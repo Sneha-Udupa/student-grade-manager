@@ -48,6 +48,15 @@ for record in range(n):
     student_marks = input("Enter student marks: ").split()
     details.update({student_name : student_marks})
 print(details)
+
+for name in details:
+    new_list = []
+    for str_num in details[name]:
+        new_list.append(int(str_num))
+    details[name] = new_list
+print(details)
+
+
 # while True:
 #     print("----- Student Grade Manager -----")
 #     print("----- MENU -----")

@@ -1,8 +1,7 @@
 def add_student(details):
-    student_add = {}
-    for item in details:
-        student_add.update({item : details[item]})
-    return student_add
+    for name in details:
+        details.update({name : details[name]})
+    return details
 
 def average_of_marks(details):
     avg_dict = {}
@@ -50,6 +49,7 @@ def topper(details):
             return name
 
 
+print("----- Student Grade Manager -----")
 n = int(input("Enter number of records: "))
 details = {}
 for record in range(n):
@@ -64,34 +64,43 @@ for name in details:
     details[name] = new_list
 print(details)
 
-avg_dict = average_of_marks(details)
-print(average_of_marks(details))
-print(grade(avg_dict))
-print(view_students(details))
-print(topper(details))
+while True:
+    print("----- MENU -----")
+    print("----- 1. Add Students -----")
+    print("----- 2. Find Average -----")
+    print("----- 3. Assess Grade -----")
+    print("----- 4. View all Students -----")
+    print("----- 5. Topper with Average marks -----")
+    print("----- 6. Exit -----")
 
+    op = int(input("Select action number: "))
 
-# while True:
-#     print("----- Student Grade Manager -----")
-#     print("----- MENU -----")
-#     print("----- 1. Add Students -----")
-#     print("----- 2. Find Average -----")
-#     print("----- 3. Assess Grade -----")
-#     print("----- 4. View all Students -----")
-#     print("----- 5. Topper with Average marks -----")
-#     print("----- 6. Exit -----")
-#     op = int(input("Select action number: "))
+    if op == 1:
+        m = int(input("Enter number of new records: "))
+        for new_rec in range(m):
+            student_name = input("Enter student name: ")
+            student_marks = input("Enter student marks: ").split()
+            details.update({student_name : student_marks})
+        print(add_student(details))
+        print("\n")
 
-#     if op == 1:
-#         print(add_student(details))
-#     elif op == 2:
-#         print(average_of_marks(details))
-#     elif op == 3:
-#         print(grade(details))
-#     elif op == 4:
-#         print(view_students(details))
-#     elif op == 5:
-#         print(topper(details))
-#     elif op == 6:
-#         print("== Thanks for using student manager! ==")
-#         break
+    elif op == 2:
+        print(average_of_marks(details))
+        print("\n")
+
+    elif op == 3:
+        avg_dict = average_of_marks(details)
+        print(grade(avg_dict))
+        print("\n")
+
+    elif op == 4:
+        print(view_students(details))
+        print("\n")
+
+    elif op == 5:
+        print(topper(details))
+        print("\n")
+
+    elif op == 6:
+        print("== Thanks for using student manager! ==")
+        break

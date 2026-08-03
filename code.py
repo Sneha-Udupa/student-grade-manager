@@ -6,9 +6,12 @@ def add_student(details):
 
 def average_of_marks(details):
     avg_dict = {}
-    for item in details:
-        avg = sum(details[item])/len(details[item]) 
-        avg_dict.update({item : avg})
+    for name in details:
+        total = 0
+        for num in details[name]:
+            total += num
+        avg = total/len(details[name])
+        avg_dict.update({name : round(avg, 2)})
     return avg_dict
 
 def grade(details):
@@ -47,7 +50,6 @@ for record in range(n):
     student_name = input("Enter student name: ")
     student_marks = input("Enter student marks: ").split()
     details.update({student_name : student_marks})
-print(details)
 
 for name in details:
     new_list = []
@@ -55,6 +57,7 @@ for name in details:
         new_list.append(int(str_num))
     details[name] = new_list
 print(details)
+print(average_of_marks(details))
 
 
 # while True:

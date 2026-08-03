@@ -39,11 +39,16 @@ def view_students(details):
     return student_list
 
 def topper(details):
-    topper_dict = {}
-    high_avg = average_of_marks(details)
-    for item in details:
-        topper_dict.update({item : high_avg})
-    return topper_dict
+    avg_list = []
+    avg_info = average_of_marks(details)
+    for value in avg_info.values():
+        avg_list.append(value)
+    highest_avg = max(avg_list)
+
+    for name, avg in avg_info.items():
+        if avg == highest_avg:
+            return name
+
 
 n = int(input("Enter number of records: "))
 details = {}
@@ -58,8 +63,12 @@ for name in details:
         new_list.append(int(str_num))
     details[name] = new_list
 print(details)
+
 avg_dict = average_of_marks(details)
+print(average_of_marks(details))
 print(grade(avg_dict))
+print(view_students(details))
+print(topper(details))
 
 
 # while True:

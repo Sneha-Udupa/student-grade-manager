@@ -14,22 +14,23 @@ def average_of_marks(details):
         avg_dict.update({name : round(avg, 2)})
     return avg_dict
 
-def grade(details):
-    for item in details:
-        for num in details[item]:
-            if num >= 90 and num <= 100:
-                grade = 'A+'
-            elif num >= 80 and num < 90:
-                grade = 'A'
-            elif num >= 70 and num < 80:
-                grade = 'B'
-            elif num >= 60 and num < 70:
-                grade = 'C'
-            elif num >= 50 and num < 60:
-                grade = 'D'
-            else:
-                grade = "FAIL"
-    return grade
+def grade(avg_dict):
+    grade_dict = {}
+    for name in avg_dict:
+        if avg_dict[name] >= 90 and avg_dict[name] <= 100:
+            grade = 'A+'
+        elif avg_dict[name] >= 80 and avg_dict[name] < 90:
+            grade = 'A'
+        elif avg_dict[name]>= 70 and avg_dict[name] < 80:
+            grade = 'B'
+        elif avg_dict[name] >= 60 and avg_dict[name] < 70:
+            grade = 'C'
+        elif avg_dict[name] >= 50 and avg_dict[name] < 60:
+            grade = 'D'
+        else:
+            grade = "FAIL"
+        grade_dict.update({name : grade})
+    return grade_dict
 
 def view_students(details):
     student_list = []
@@ -57,7 +58,8 @@ for name in details:
         new_list.append(int(str_num))
     details[name] = new_list
 print(details)
-print(average_of_marks(details))
+avg_dict = average_of_marks(details)
+print(grade(avg_dict))
 
 
 # while True:

@@ -1,4 +1,14 @@
+
 def add_student(details):
+    """
+        Add new student records 
+
+        Arguements : 
+            details (dict) : Dictionary containing student names and marks
+
+        Returns:
+            details (dict) : Updated dictionary with new records
+    """
     m = int(input("Enter number of new records: "))
     for new_rec in range(m):
         student_name = input("Enter student name: ")
@@ -14,6 +24,15 @@ def add_student(details):
     return details
 
 def average_of_marks(details):
+    """
+        Calculate avg marks for each student 
+    
+        Arguements : 
+            details (dict) : Dictionary containing student names and marks
+    
+        Returns:
+            avg_dict (dict) : Dictionary mapping student names with their avg marks
+    """
     avg_dict = {}
     for name in details:
         total = 0
@@ -24,6 +43,15 @@ def average_of_marks(details):
     return avg_dict
 
 def grade(avg_dict):
+    """
+        Assess grades for each student
+    
+        Arguements : 
+            avg_dict : Dictionary mapping student names with their avg marks
+    
+        Returns:
+            grade_dict (dict) : Dictionary mapping student names with their grade
+    """
     grade_dict = {}
     for name in avg_dict:
         if avg_dict[name] >= 90 and avg_dict[name] <= 100:
@@ -42,12 +70,30 @@ def grade(avg_dict):
     return grade_dict
 
 def view_students(details):
+    """
+        List all students
+    
+        Arguements : 
+            details (dict) : Dictionary containing student names and marks
+    
+        Returns:
+            student_list (list) : List containing student names
+    """
     student_list = []
     for student in details:
         student_list.append(student)
     return student_list
 
 def topper(details):
+    """
+        Identify topper based on average marks 
+    
+        Arguements : 
+            details (dict) : Dictionary containing student names and marks
+    
+        Returns:
+            name (key) of details (dict) corresponding to the highest average marks
+    """
     avg_list = []
     avg_info = average_of_marks(details)
     for value in avg_info.values():
@@ -57,7 +103,6 @@ def topper(details):
     for name, avg in avg_info.items():
         if avg == highest_avg:
             return name
-
 
 print("----- Student Grade Manager -----")
 n = int(input("Enter number of records: "))
@@ -122,5 +167,4 @@ while True:
         break
 
     else:
-        print("\nInvalid choice!")
-        break
+        print("\nInvalid choice! Please enter numbers between 1 and 6")

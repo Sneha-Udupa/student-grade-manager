@@ -55,12 +55,19 @@ details = {}
 for record in range(n):
     student_name = input("Enter student name: ")
     student_marks = input("Enter student marks: ").split()
-    details.update({student_name : student_marks})
+    if student_marks == []:
+        print("Empty List!")
+        exit()
+    details.update({student_name.title() : student_marks})
 
 for name in details:
     new_list = []
     for str_num in details[name]:
-        new_list.append(int(str_num))
+        try:
+            new_list.append(int(str_num))
+        except ValueError:
+            print("Invalid marks!")
+            exit()
     details[name] = new_list
 print(details)
 
@@ -103,4 +110,8 @@ while True:
 
     elif op == 6:
         print("== Thanks for using student manager! ==")
+        break
+
+    else:
+        print("Invalid choice!")
         break

@@ -1,6 +1,16 @@
 def add_student(details):
-    for name in details:
-        details.update({name : details[name]})
+    m = int(input("Enter number of new records: "))
+    for new_rec in range(m):
+        student_name = input("Enter student name: ")
+        student_marks = input("Enter student marks: ").split()
+    new_list = []
+    for str_num in student_marks:
+        try:
+            new_list.append(int(str_num))
+        except ValueError:
+            exit()
+            print("Invalid marks!")
+    details.update({student_name.title() : new_list})
     return details
 
 def average_of_marks(details):
@@ -83,35 +93,34 @@ while True:
     op = int(input("Select action number: "))
 
     if op == 1:
-        m = int(input("Enter number of new records: "))
-        for new_rec in range(m):
-            student_name = input("Enter student name: ")
-            student_marks = input("Enter student marks: ").split()
-            details.update({student_name : student_marks})
         print(add_student(details))
         print("\n")
 
     elif op == 2:
+        print("\n---- Average marks of students ---- ")
         print(average_of_marks(details))
         print("\n")
 
     elif op == 3:
         avg_dict = average_of_marks(details)
+        print("\n---- Grades of students based on average marks ---- ")
         print(grade(avg_dict))
         print("\n")
 
     elif op == 4:
+        print("\n---- List of students ---- ")
         print(view_students(details))
         print("\n")
 
     elif op == 5:
+        print("\n---- Topper ---- ")
         print(topper(details))
         print("\n")
 
     elif op == 6:
-        print("== Thanks for using student manager! ==")
+        print("\n== Thanks for using student manager! ==")
         break
 
     else:
-        print("Invalid choice!")
+        print("\nInvalid choice!")
         break

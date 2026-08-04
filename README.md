@@ -1,3 +1,4 @@
+```
 1. Project Title
 Student Grade Manager
 
@@ -65,3 +66,4 @@ Select action number: 6
 - Update marks
 - Delete students
 - Sort students by average
+```

@@ -1,3 +1,4 @@
+import json
 
 def add_student(details):
     """
@@ -22,6 +23,34 @@ def add_student(details):
             print("Invalid marks!")
     details.update({student_name.title() : new_list})
     return details
+
+def save_students(details):
+    """
+        Save python object (details) to JSON file "students.json"
+        
+        Arguements : 
+            details (dict) : Dictionary containing student names and marks
+        
+        Returns:
+            None
+    """
+    with open("students.json", "w") as f:
+        json.dump(details, f, indent=2)
+
+def load_students():
+    """
+        Load data from "students.json" as Python object (dict)
+            
+        Arguements : 
+            None
+            
+        Returns:
+            Dictionary containing students with their marks
+    """
+    with open("students.json") as file:
+        data = file.read()
+    data_source = json.loads(data)
+    return data_source
 
 def average_of_marks(details):
     """
@@ -104,9 +133,15 @@ def topper(details):
         if avg == highest_avg:
             return name
 
-print("----- Student Grade Manager -----")
-n = int(input("Enter number of records: "))
 details = {}
+print("----- Student Grade Manager -----")
+load = input("Do you want to load previous student records? Type Y (YES) or N (NO): ")
+
+if load == 'Y':
+    details = load_students()
+    print(details)
+
+n = int(input("Enter number of records: "))
 for record in range(n):
     student_name = input("Enter student name: ")
     student_marks = input("Enter student marks: ").split()
@@ -125,6 +160,7 @@ for name in details:
             exit()
     details[name] = new_list
 print(details)
+save_students(details)
 
 while True:
     print("\n----- MENU -----")
@@ -139,6 +175,7 @@ while True:
 
     if op == 1:
         print(add_student(details))
+        save_students(details)
         print("\n")
 
     elif op == 2:
